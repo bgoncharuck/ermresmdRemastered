@@ -6,7 +6,7 @@ struct __cardSkill {
 	skillCondition condition;
 	skillType type;
 	unsigned short value;
-}
+};
 
 cardSkill * cardSkill_new () {
 	cardSkill * self = calloc (sizeof(cardSkill), 1);
