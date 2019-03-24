@@ -131,7 +131,7 @@ serializationPoint * serializationObject_at (serializationObject * self, size_t 
 }
 
 void serializationObject_set (serializationObject * self, size_t index, serializationPoint * point) {
-    if (!point)
+    if (!self || !point)
 		throw("NULL reference in serializationObject_set from /src/serialization.c");
 
     if (index < 0 || index >= self->size)
@@ -150,7 +150,7 @@ void serializationObject_add (serializationObject * self, serializationPoint * p
 
 void serializationObject_insert (serializationObject * self, size_t index, serializationPoint * point) {
 
-    if (!point)
+    if (!self || !point)
 		throw("NULL reference in serializationObject_insert from /src/serialization.c");
 
 	if (index > self->size)
@@ -166,3 +166,57 @@ void serializationObject_insert (serializationObject * self, size_t index, seria
 	serializationObject_set (self, index, point);
     self->size++;
 }
+
+long long serializationObject_indexOfTitle (serializationObject * self, const char * title) {
+	if (!self || !title)
+		throw("NULL reference in serializationObject_indexOfTitle from /src/serialization.c");
+
+	for (size_t i = 0; i < self->size; i++) {
+        if ( strcmp(self->serializationPoints[i]->title, title) == 0 ) {
+            return (long long) i;
+        }
+    }
+
+    return -1;
+}
+
+bool serializationObject_contains (serializationObject * self, const char * title) {
+	return serializationObject_indexOfTitle (self, title) >= 0;
+}
+
+bool serializationObject_remove(serializationObject * self, const char * title) {
+
+	if (!self || !title)
+		throw("NULL reference in serializationObject_indexOfTitle from /src/serialization.c");
+
+    long long index = serializationObject_indexOf (self, title);
+
+	if (index >= 0) {
+        serializationObject_removeAt(self, (size_t) index);
+        return true;
+    }
+    return false;
+}
+
+void serializationObject_removeAt (serializationObject * self, size_t index) {
+
+    if (index < 0 || index >= self->size)
+		throw("Index out of bounds in serializationObject_removeAt from /src/fight_serialization.c");
+
+    self->size--;
+    if (index < self->size) {
+		// @TODO
+    }
+}
+
+bool serializationObject_isEmpty (serializationObject * self) {
+	if (self)
+		return self->size == 0;
+}
+
+size_t  serializationObject_count (serializationObject * self) {
+	if (self)
+		return self->size;
+}
+
+void serializationObject_clear (serializationObject * self);

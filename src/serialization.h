@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdbool.h>
+
 typedef enum __seriliazationType serializationType;
 typedef struct __serializationObject serializationObject;
 typedef struct __serializationPoint serializationPoint;
