@@ -8,15 +8,6 @@
 #define empty(MEM, SIZE) memset(MEM, 0, SIZE)
 #define throw(MSG) { fprintf(stderr, MSG); assert(0 && MSG); }
 
-enum __seriliazationType {
-	booleanType,
-	integerType,
-	floatType,
-	stringType,
-	objectType,
-	arrayType
-};
-
 struct __serializationPoint {
 	// title must be dynamic
 	char * title;

@@ -2,7 +2,14 @@
 
 #include <stdbool.h>
 
-typedef enum __seriliazationType serializationType;
+typedef enum __seriliazationType {
+	booleanType,
+	integerType,
+	floatType,
+	stringType,
+	objectType,
+	arrayType
+} serializationType;
 typedef struct __serializationObject serializationObject;
 typedef struct __serializationPoint serializationPoint;
 
