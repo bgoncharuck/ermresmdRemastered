@@ -45,6 +45,19 @@ serializationObject * cardSkill_serialize (cardSkill * skill) {
 
 void serialized_cardSkill_free (serializationObject * self) {
 
+	free ((unsigned short *)(serializationPoint_value( (serializationObject_at (self, 2)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 2)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 2))));
+
+	free ((unsigned short *)(serializationPoint_value( (serializationObject_at (self, 1)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 1)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 1))));
+
+	free ((unsigned short *)(serializationPoint_value( (serializationObject_at (self, 0)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 0)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 0))));
+
+	serializationObject_free (self);
 }
 
 cardSkill * serialized_cardSkill_load (serializationObject * self) {
@@ -133,5 +146,5 @@ void serialized_deck_free (serializationObject * self) {
 
 deck * serialized_deck_load (serializationObject * self) {
 
-	
+
 }
