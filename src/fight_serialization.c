@@ -129,6 +129,31 @@ serializationObject * card_serialize (card * Card) {
 
 void serialized_card_free (serializationObject * self) {
 
+	serialized_cardSkill_free ((serializationObject *)(serializationPoint_value( (serializationObject_at (self, 5)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 5)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 5))));
+
+	serialized_cardSkill_free ((serializationObject *)(serializationPoint_value( (serializationObject_at (self, 4)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 4)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 4))));
+
+	free ((unsigned short *)(serializationPoint_value( (serializationObject_at (self, 3)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 3)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 3))));
+
+	free ((unsigned short *)(serializationPoint_value( (serializationObject_at (self, 2)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 2)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 2))));
+
+	free ((unsigned short *)(serializationPoint_value( (serializationObject_at (self, 1)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 1)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 1))));
+
+	free ((char *)(serializationPoint_value( (serializationObject_at (self, 0)))));
+	free ((serializationPoint_title( (serializationObject_at (self, 0)))));
+	serializationPoint_free (serializationPoint_title( (serializationObject_at (self, 0))));
+
+	serializationObject_free (self);
 }
 
 card * serialized_card_load (serializationObject * self) {
