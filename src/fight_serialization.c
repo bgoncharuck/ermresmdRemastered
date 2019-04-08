@@ -163,6 +163,41 @@ card * serialized_card_load (serializationObject * self) {
 
 serializationObject * deck_serialize (deck * Deck) {
 
+	char * title_deckArray = calloc (sizeof (char), 5);
+	sprintf (title_deckArray, "Deck\0");
+
+	serializationObject * value_deckArray = serializationObject_new();
+
+	for (int cardIndexInDeck = 0; cardIndexInDeck <= DECK_SIZE; cardIndexInDeck++) {
+
+		char * title_currentCard = calloc (sizeof (char), 3);
+		sprintf (title_currentCard, "%d\0", cardIndexInDeck);
+
+		serializationObject * value_currentCard = card_serialize (deck_at (Deck, cardIndexInDeck));
+
+		serializationPoint * point_currentCard =
+		serializationPoint_new (title_currentCard, objectType, (void *) value_currentCard) ;
+
+		serializationObject_insert (value_deckArray, cardIndexInDeck, point_currentCard);
+	}
+
+	serializationPoint * point_deckArray =
+	serializationPoint_new (title_deckArray, arrayType, (void *) value_deckArray);
+
+
+	char * title_deckSize = calloc (sizeof (char), 5);
+	sprintf (title_deckSize, "Size\0");
+	unsigned short * value_deckSize = calloc (sizeof (unsigned short), 1);
+	value_deckSize = DECK_SIZE;
+	serializationPoint * point_deckSize =
+	serializationPoint_new (title_deck, integerType, (void *) value_deckSize);
+
+	serializationObject * self = serializationObject_new ();
+
+	serializationObject_insert (self, 0, point_deckSize);
+	serializationObject_insert (self, 1, point_deckArray);
+
+	return self;
 }
 
 void serialized_deck_free (serializationObject * self) {
