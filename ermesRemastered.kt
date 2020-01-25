@@ -48,6 +48,31 @@ class silverCoin(): Coin("Silver Coin", 100, "Silver Bank of Bachin") {
 }
 
 class goldCoin(): Coin("Gold Coin", 1000, "Westburg Tallers Corp") {
+
+}
+
+class ancientSilverCoin(): Coin("Ancient Silver Coin", 1500, "Unknown") {
+
+}
+
+class ancientGoldCoin(): Coin("Anceint Gold Coin", 10000, "Unknown") {
+
+}
+
+open class NonEquippableArtifact(): Item()
+open class Jewelry(): Item()
+open class Necklace(): Jewelry()
+open class Ring(): Jewelry()
+open class Bracelet(): Jewelry()
+open class Note(): Item()
+open class Book(): Note()
+open class Clothing(): Item()
+
+open class Armor(): Clothing()
+
+open class Weapon(): Item()
+
+class EquippedItems {
   
 }
 
