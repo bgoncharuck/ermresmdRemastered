@@ -67,13 +67,26 @@ open class Bracelet(): Jewelry()
 open class Note(): Item()
 open class Book(): Note()
 open class Clothing(): Item()
-
+open class Hat(): Clothing()
+open class Breast(): Clothing()
+open class Gloves(): Clothing()
+open class Shoes(): Clothing()
 open class Armor(): Clothing()
-
+open class Helm(): Armor()
+open class Breastplate(): Armor()
+open class Bracers(): Armor()
+open class Boots(): Armor()
 open class Weapon(): Item()
+open class Stuff(): Weapon()
+open class MagicStuff(): Stuff()
+open class Mace(): Weapon()
+open class Axe(): Weapon()
+open class Spear(): Weapon()
+open class Sword(): Weapon()
+open class Bow(): Weapon()
 
 class EquippedItems {
-  
+
 }
 
 class Inventory {
