@@ -1,5 +1,6 @@
 enum class TypeOfItem(val typeValue: Int) {
-  Coin(42)
+  Coin(42),
+  Artifact(43)
 }
 
 enum class RarityOfItem(val rarityValue: Byte) {
@@ -59,7 +60,16 @@ class ancientGoldCoin(): Coin("Anceint Gold Coin", 10000, "Unknown") {
 
 }
 
-open class NonEquippableArtifact(): Item()
+open class NonEquippableArtifact(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Enchanted.rarityValue):
+  Item(TypeOfItem.Artifact.typeValue,
+    _name,
+    _value,
+    _rarity) {
+
+}
+
 open class Jewelry(): Item()
 open class Necklace(): Jewelry()
 open class Ring(): Jewelry()
