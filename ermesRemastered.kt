@@ -84,8 +84,20 @@ open class Jewelry(val _name: String,
 open class Necklace(val _name: String,
   val _value: Int,
   val _rarity: Int= RarityOfItem.Rare.rarityValue):
-  Jewelry(_name,)
-open class Ring(): Jewelry()
+  Jewelry(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Ring(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue):
+  Jewelry(_name,
+    _value,
+    _rarity) {
+
+}
 open class Bracelet(): Jewelry()
 open class Note(): Item()
 open class Book(): Note()
