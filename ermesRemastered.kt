@@ -2,7 +2,8 @@ enum class TypeOfItem(val typeValue: Int) {
   Coin(42),
   Artifact(43),
   Jewelry(44),
-  Paper(45)
+  Paper(45),
+  Clothing(46)
 }
 
 enum class RarityOfItem(val rarityValue: Byte) {
@@ -128,17 +129,105 @@ open class Book(val _name: String,
 
 }
 
-open class Clothing(): Item()
-open class Hat(): Clothing()
-open class Breast(): Clothing()
-open class Gloves(): Clothing()
-open class Shoes(): Clothing()
+open class Clothing(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Common.rarityValue):
+  Item(TypeOfItem.Clothing.typeValue,
+    _name,
+    _value,
+    _rarity) {
 
-open class Armor(): Clothing()
-open class Helm(): Armor()
-open class Breastplate(): Armor()
-open class Bracers(): Armor()
-open class Boots(): Armor()
+}
+
+open class Hat(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Common.rarityValue):
+  Clothing(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Breast(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Common.rarityValue):
+  Clothing(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Gloves(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Common.rarityValue):
+  Clothing(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Shoes(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Common.rarityValue):
+  Clothing(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Armor(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue,
+  val defenceValue):
+  Clothing(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Helm(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue,
+  val _defenceValue):
+  Armor(_name,
+    _value,
+    _rarity,
+    _defenceValue) {
+
+}
+
+open class Breastplate(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue,
+  val _defenceValue):
+  Armor(_name,
+    _value,
+    _rarity,
+    _defenceValue) {
+
+}
+
+open class Bracers(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue,
+  val _defenceValue):
+  Armor(_name,
+    _value,
+    _rarity,
+    _defenceValue) {
+
+}
+
+open class Boots(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue,
+  val _defenceValue):
+  Armor(_name,
+    _value,
+    _rarity,
+    _defenceValue) {
+
+}
 
 open class Weapon(): Item()
 open class Stuff(): Weapon()
