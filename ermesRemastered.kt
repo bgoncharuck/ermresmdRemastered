@@ -3,7 +3,8 @@ enum class TypeOfItem(val typeValue: Int) {
   Artifact(43),
   Jewelry(44),
   Paper(45),
-  Clothing(46)
+  Clothing(46),
+  Weapon(47)
 }
 
 enum class RarityOfItem(val rarityValue: Byte) {
@@ -20,6 +21,10 @@ enum class RarityOfItem(val rarityValue: Byte) {
   HighEnchanted(6),
   AncientEnchanted(7),
   Legendary(8)
+}
+
+class magicEnchantment() {
+
 }
 
 open class Item(val _type: Int,
@@ -229,14 +234,113 @@ open class Boots(val _name: String,
 
 }
 
-open class Weapon(): Item()
-open class Stuff(): Weapon()
-open class MagicStuff(): Stuff()
-open class Mace(): Weapon()
-open class Axe(): Weapon()
-open class Spear(): Weapon()
-open class Sword(): Weapon()
-open class Bow(): Weapon()
+open class Weapon(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val damage: Int,
+  val speed: Int):
+  Item(TypeOfItem.Weapon.typeValue,
+    _name,
+    _value,
+    _rarity) {
+
+}
+
+open class Staff(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val _damage: Int,
+  val _speed: Int):
+  Weapon(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
+
+open class MagicStaff(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Enchanted.rarityValue,
+  val _damage: Int,
+  val _speed: Int,
+  val magicEnchantment: magicEnchantment):
+  Staff(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
+
+open class Mace(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val _damage: Int,
+  val _speed: Int):
+  Weapon(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
+
+
+open class Axe(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val _damage: Int,
+  val _speed: Int):
+  Weapon(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
+
+
+open class Spear(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val _damage: Int,
+  val _speed: Int):
+  Weapon(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
+
+
+open class Sword(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val _damage: Int,
+  val _speed: Int):
+  Weapon(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
+
+
+open class Bow(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.HighQuality.rarityValue,
+  val _damage: Int,
+  val _speed: Int):
+  Weapon(_name,
+    _value,
+    _rarity,
+    _damage,
+    _speed) {
+
+}
 
 class EquippedItems {
 
