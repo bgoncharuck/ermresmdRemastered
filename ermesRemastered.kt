@@ -1,7 +1,8 @@
 enum class TypeOfItem(val typeValue: Int) {
   Coin(42),
   Artifact(43),
-  Jewelry(44)
+  Jewelry(44),
+  Paper(45)
 }
 
 enum class RarityOfItem(val rarityValue: Byte) {
@@ -98,19 +99,47 @@ open class Ring(val _name: String,
     _rarity) {
 
 }
-open class Bracelet(): Jewelry()
-open class Note(): Item()
-open class Book(): Note()
+
+open class Bracelet(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Rare.rarityValue):
+  Jewelry(_name,
+    _value,
+    _rarity) {
+
+}
+
+open class Note(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.Common.rarityValue):
+  Item(TypeOfItem.Paper.typeValue,
+    _name,
+    _value,
+    _rarity) {
+
+}
+
+open class Book(val _name: String,
+  val _value: Int,
+  val _rarity: Int= RarityOfItem.MasterPiece.rarityValue):
+  Note(_name,
+    _value,
+    _rarity) {
+
+}
+
 open class Clothing(): Item()
 open class Hat(): Clothing()
 open class Breast(): Clothing()
 open class Gloves(): Clothing()
 open class Shoes(): Clothing()
+
 open class Armor(): Clothing()
 open class Helm(): Armor()
 open class Breastplate(): Armor()
 open class Bracers(): Armor()
 open class Boots(): Armor()
+
 open class Weapon(): Item()
 open class Stuff(): Weapon()
 open class MagicStuff(): Stuff()
