@@ -10,7 +10,7 @@ enum class TypeOfItem(val typeValue: Int) {
 
 enum class RarityOfItem(val rarityValue: Byte) {
   Trash(-4),
-  Joke(-3)
+  Joke(-3),
   Broken(-2),
   BadQuality(-1),
   Common(0),
@@ -24,7 +24,7 @@ enum class RarityOfItem(val rarityValue: Byte) {
   Legendary(8)
 }
 
-enum class AttributeCode(val attributeCodeValue: Byte) {
+enum class AttributeCode(val code: Byte) {
   health(-126),
   stamina(-125),
   magic(-124),
@@ -43,26 +43,33 @@ enum class AttributeCode(val attributeCodeValue: Byte) {
   bounty(50)
 }
 
-interface Attribute(val _attributeCode: Byte) {
-  val attributeCode: Byte= _attributeCode
-  fun value()
+interface Attribute {
+  val attributeCode: Byte
+  fun value(): Double
 }
 
-class AttributeVal(val _attributeCode: Byte, val _value: Double): Attribute(_attributeCode) {
-  val value: Double= _value
-  override fun value() {
-    return value
+class AttributeConstant(val _attributeCode: Byte, val _attributeVal: Double): Attribute {
+  override val attributeCode: Byte= _attributeCode
+  private val _value: Double= _attributeVal
+  override fun value(): Double {
+    return this._value
   }
 }
 
-class AttributeVar(val _attributeCode: Byte, val _value: Double): Attribute(_attributeCode) {
-  var value: Double= _value
-  override fun value() {
-    return value
+class AttributeChangeable(val _attributeCode: Byte, val _attributeVal: Double): Attribute {
+  override val attributeCode: Byte= _attributeCode
+  private var _value: Double= _attributeVal
+  override fun value(): Double {
+    return this._value
+  }
+  fun valueChange(newVal: Double) {
+    this._value= newVal
   }
 }
 
-class magicEnchantment(val _name: String, val _ench: Attribute) {
-  val name: String= _name
-  val enchantment: Attribute= _ench
+fun main() {
+  val test1: AttributeChangeable= AttributeChangeable(AttributeCode.health.code, 120.0)
+  println(test1.value())
+  test1.valueChange(126.0)
+  println(test1.value())
 }
