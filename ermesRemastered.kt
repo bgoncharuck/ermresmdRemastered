@@ -49,13 +49,13 @@ interface Attribute {
 }
 
 class Health(val _value: Double): Attribute {
-  override attributeCode: Byte=AttributeCode.health.code
-  override value: Double=_value
+  override val attributeCode: Byte=AttributeCode.health.code
+  override val value: Double=_value
 }
 
 fun main() {
-  val test1: Attribute= Health(120.0)
+  var test1: Attribute= Health(120.0)
   println(test1.value)
-  test1= Health(126)
+  test1= Health(126.0)
   println(test1.value)
 }
