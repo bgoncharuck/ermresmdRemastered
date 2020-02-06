@@ -45,31 +45,17 @@ enum class AttributeCode(val code: Byte) {
 
 interface Attribute {
   val attributeCode: Byte
-  fun value(): Double
+  val value: Double
 }
 
-class AttributeConstant(val _attributeCode: Byte, val _attributeVal: Double): Attribute {
-  override val attributeCode: Byte= _attributeCode
-  private val _value: Double= _attributeVal
-  override fun value(): Double {
-    return this._value
-  }
-}
-
-class AttributeChangeable(val _attributeCode: Byte, val _attributeVal: Double): Attribute {
-  override val attributeCode: Byte= _attributeCode
-  private var _value: Double= _attributeVal
-  override fun value(): Double {
-    return this._value
-  }
-  fun valueChange(newVal: Double) {
-    this._value= newVal
-  }
+class Health(val _value: Double): Attribute {
+  override attributeCode: Byte=AttributeCode.health.code
+  override value: Double=_value
 }
 
 fun main() {
-  val test1: AttributeChangeable= AttributeChangeable(AttributeCode.health.code, 120.0)
-  println(test1.value())
-  test1.valueChange(126.0)
-  println(test1.value())
+  val test1: Attribute= Health(120.0)
+  println(test1.value)
+  test1= Health(126)
+  println(test1.value)
 }
